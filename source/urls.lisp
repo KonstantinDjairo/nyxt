@@ -660,3 +660,18 @@ with depth 0.  Find below the stack of calls.
            (push (funcall filter-links-fn link-list) url-list-all-depth)
            link-list)))
       (nreverse url-list-all-depth))))
+
+(defun interactive-recursive-links (depth url-list
+                                    &optional (fetch-links-fn #'http-fetch-links))
+  "Return the same as `recursive-links'.
+At each DEPTH, a subset of URLs is selected with `prompt-buffer'."
+  ;; TODO How to exit a prompt without choosing any URL?
+  (recursive-links
+   depth
+   url-list
+   fetch-links-fn
+   (lambda (url-list) (prompt :prompt "Choose URLs"
+                         :sources (make-instance 'prompter:source
+                                                 :constructor url-list
+                                                 :name "URL"
+                                                 :multi-selection-p t)))))
