@@ -254,3 +254,20 @@ Otherwise behaves the same as `cl-json:encode-json-to-string'."
             ("null" . :null)
             ("undefined" . :undefined))))
     (json:encode-json-to-string data)))
+
+(defun fetch-links (&optional (buffer (current-buffer))
+                      (filtering-rules (list #'host=
+                                             #'distinct-url-path-p
+                                             #'scheme=)))
+  "Return a list of links from BUFFER.
+FILTERING-RULES is a list of functions that take two URLs and return a boolean.
+A link is collected when, for all elements of FILTERING-RULES, the return value
+is non-nil."
+  (with-current-buffer buffer
+    (pflet ((nlinks () (ps:@ document links length))
+            (fetch-link (i) (ps:chain document links (item (ps:lisp i)) href)))
+      (loop for i from 0 to (1- (nlinks))
+            with url = (url buffer)              ; computed once
+            for link = (quri:uri (fetch-link i)) ; computed on every iteration
+            when (eq-uri-p url link filtering-rules)
+              collect link))))
