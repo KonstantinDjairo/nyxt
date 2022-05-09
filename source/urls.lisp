@@ -546,7 +546,8 @@ return a boolean.  It defines an equivalence relation induced by EQ-FN-LIST.
 (-> distinct-url-path-p (quri:uri quri:uri) boolean)
 (defun distinct-url-path-p (url1 url2)
   "Return non-nil when URL1 and URL2 have distinct paths."
-  ;; See https://github.com/fukamachi/quri/issues/48.
+  ;; Distinguish from https://foo.org and https://foo.org#bar
+  ;; Refactor.
   (not (equalp (string-right-trim "/" (or (quri:uri-path url1) ""))
                (string-right-trim "/" (or (quri:uri-path url2) "")))))
 
