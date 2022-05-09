@@ -611,7 +611,7 @@ Otherwise, create a new buffer to fetch the links."
                           (filter-links-fn #'identity))
   "Return a list of length DEPTH.
 
-Each element is a list of URLs at distance 0,1,...,DEPTH from URL-LIST.
+Each element is a list of URLs at distance 0..DEPTH from URL-LIST.
 
 DEPTH is the minimum distance between 2 URLs, i.e. how many URLs need to be
 visited to get from one to the other via their links.
