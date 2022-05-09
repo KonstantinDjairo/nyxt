@@ -538,11 +538,10 @@ return a boolean.  It defines an equivalence relation induced by EQ-FN-LIST.
 
 EQ-FN-LIST is a list of functions that take URL1 and URL2 as arguments and
 return a boolean.  It defines an equivalence relation induced by EQ-FN-LIST.
-`quri:uri=', `url-equal' and `schemeless-uri=' are examples of equivalence
-relations."
-  ;; (and (fn1 url1 url2) (fn2 url1 url2) ...) stops as soon as any fn returns
-  ;; nil, unlike the solution below.
-  (every #'identity (mapcar (lambda (fn) (funcall fn url1 url2)) eq-fn-list)))
+`quri:uri=', `host=' and `scheme=' are examples of equivalence relations."
+  ;; (and (fn1 url1 url2) (fn2 url1 url2) ...) returns without evaluating all
+  ;; forms, unlike the solution below.
+  (every (lambda (fn) (funcall fn url1 url2)) eq-fn-list))
 
 (-> distinct-url-path-p (quri:uri quri:uri) boolean)
 (defun distinct-url-path-p (url1 url2)
