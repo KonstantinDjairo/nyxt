@@ -580,7 +580,7 @@ Otherwise, create a new buffer to fetch the links."
            (mapcar
             (lambda (tag) (unless (null (plump:attribute tag "href"))
                        (quri:merge-uris (plump:attribute tag "href") url)))
-            (plump:get-elements-by-tag-name (plump:parse (dex:get url)) "a")))))
+            (clss:select "a" (plump:parse (dex:get url)))))))
     (loop for link in links
           when (eq-uri-p link url filtering-rules)
             collect link)))
