@@ -557,28 +557,13 @@ return a boolean.  It defines an equivalence relation induced by EQ-FN-LIST.
   "Return a list of links from URL.
 If there is a buffer corresponding to URL, then fetch the links from it.
 Otherwise, create a new buffer to fetch the links."
-  (let ((buffer-exists-p (find (quri:uri url)
-                               (buffer-list)
-                               :test #'quri:uri=
-                               :key #'url)))
-    (if buffer-exists-p
-        (funcall #'fetch-links buffer-exists-p)
-        ;; Buffers should be made as light as possible (no images, CSS, etc).
-        (let ((buffer (make-nosave-buffer :modes '(web-mode noimage-mode)
-                                          :url url))
-              (channel (make-channel)))
-          (sera:add-hook (buffer-loaded-hook buffer)
-						 (make-instance
-                          'nyxt::handler-buffer
-                          :fn (lambda (buffer)
-                                (calispel:! channel (funcall #'fetch-links buffer))
-                                ;; The buffer is only needed to get the links.
-                                ;; Alternative:
-                                ;; (sera:remove-hook (buffer-loaded-hook buffer)
-                                ;;                   'fetch-links)
-                                (buffer-delete buffer))
-                          :name 'fetch-links))
-          (calispel:? channel)))))
+  (alex:if-let ((bufferp (find (quri:uri url) (buffer-list) :test #'quri:uri= :key #'url)))
+    (fetch-links bufferp)
+    (let ((channel (make-channel)))
+      ;; Buffers should be made as light as possible (no images, CSS, etc).
+      (once-on (buffer-loaded-hook (make-nosave-buffer :url url)) buffer
+        (calispel:! channel (fetch-links buffer)))
+      (calispel:? channel))))
 
 (-> http-fetch-links (quri:uri &optional list) list)
 (defun http-fetch-links (url &optional (filtering-rules (list #'host=
