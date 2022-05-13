@@ -568,14 +568,14 @@ Otherwise, create a new buffer to fetch the links."
                                                               #'host=
                                                               #'path!=)))
   "Return a list of links from URL."
-  ;; TODO
-  ;; quri:merge-uris bug - see https://github.com/fukamachi/quri/issues/47;
-  ;; Manage urls that download stuff;
-  ;; Manage urls that can't be reached.
+  ;; FIXME Manage urls that download stuff or can't be reached
+  ;; FIXME links have type QURI.URI.HTTP:URI-HTTPS or QURI.URI:URI.  Why??
   (loop for link in (remove
                      nil
                      (mapcar
                       (lambda (tag) (unless (null (plump:attribute tag "href"))
+                                 ;; quri:merge-uris bug - see
+                                 ;; https://github.com/fukamachi/quri/issues/47
                                  (quri:merge-uris (plump:attribute tag "href") url)))
                       ;; this returns a vector, instead of a list
                       ;; (clss:select "a" (plump:parse (dex:get url)))
