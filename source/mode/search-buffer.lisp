@@ -193,21 +193,21 @@ Example:
 
 (define-command search-buffers (&key case-sensitive-p)
   "Search multiple buffers."
-  (let ((buffers (prompt
-                  :prompt "Search buffer(s)"
-                  :sources (list (make-instance 'buffer-source ; TODO: Define class?
-                                                :actions '()
-                                                :multi-selection-p t)))))
-    (prompt
-     :prompt "Search text"
-     :sources (mapcar (lambda (buffer)
-                        (make-instance 'search-buffer-source
-                                       :name (format nil "Search ~a" (if (url-empty-p (url buffer))
-                                                                         (title buffer)
-                                                                         (url buffer)))
-                                       :case-sensitive-p case-sensitive-p
-                                       :buffer buffer))
-                      buffers))))
+  (prompt
+   :prompt "Search text"
+   :sources (mapcar (lambda (buffer)
+                      (make-instance 'search-buffer-source
+                                     :name (format nil
+                                                   "Search ~a"
+                                                   (if (url-empty-p (url buffer))
+                                                       (title buffer)
+                                                       (url buffer)))
+                                     :case-sensitive-p case-sensitive-p
+                                     :buffer buffer))
+                    (prompt
+                     :prompt "Search buffer(s)"
+                     :sources (make-instance 'buffer-source
+                                             :actions nil)))))
 
 (defun recursive-search (depth url-list &key case-sensitive-p)
   "Start a search on URLs that are linked in the current buffer, with arbitrary
