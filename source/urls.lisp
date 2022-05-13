@@ -575,16 +575,16 @@ Otherwise, create a new buffer to fetch the links."
   ;; quri:merge-uris bug - see https://github.com/fukamachi/quri/issues/47;
   ;; Manage urls that download stuff;
   ;; Manage urls that can't be reached.
-  (let ((links
-          (remove
-           nil
-           (mapcar
-            (lambda (tag) (unless (null (plump:attribute tag "href"))
-                       (quri:merge-uris (plump:attribute tag "href") url)))
-            (clss:select "a" (plump:parse (dex:get url)))))))
-    (loop for link in links
-          when (eq-uri-p link url filtering-rules)
-            collect link)))
+  (loop for link in (remove
+                     nil
+                     (mapcar
+                      (lambda (tag) (unless (null (plump:attribute tag "href"))
+                                 (quri:merge-uris (plump:attribute tag "href") url)))
+                      ;; this returns a vector, instead of a list
+                      ;; (clss:select "a" (plump:parse (dex:get url)))
+                      (plump:get-elements-by-tag-name (plump:parse (dex:get url)) "a")))
+        when (eq-uri-p link url filtering-rules)
+          collect link))
 
 (-> recursive-links (integer
                      list
