@@ -436,9 +436,13 @@ guarantee of the same result."
 (-> path= (quri:uri quri:uri) boolean)
 (defun path= (url1 url2)
   "Return non-nil when URL1 and URL2 have the same path."
-  ;; See https://github.com/fukamachi/quri/issues/48.
   (equalp (string-right-trim "/" (or (quri:uri-path url1) ""))
           (string-right-trim "/" (or (quri:uri-path url2) ""))))
+
+(-> path!= (quri:uri quri:uri) boolean)
+(defun path!= (url1 url2)
+  "Return non-nil when URL1 and URL2 have distinct paths."
+  (not (path= url1 url2)))
 
 (-> scheme= (quri:uri quri:uri) boolean)
 (defun scheme= (url1 url2)
@@ -544,14 +548,6 @@ return a boolean.  It defines an equivalence relation induced by EQ-FN-LIST.
   ;; forms, unlike the solution below.
   (every (lambda (fn) (funcall fn url1 url2)) eq-fn-list))
 
-(-> distinct-url-path-p (quri:uri quri:uri) boolean)
-(defun distinct-url-path-p (url1 url2)
-  "Return non-nil when URL1 and URL2 have distinct paths."
-  ;; Distinguish from https://foo.org and https://foo.org#bar
-  ;; Refactor.
-  (not (equalp (string-right-trim "/" (or (quri:uri-path url1) ""))
-               (string-right-trim "/" (or (quri:uri-path url2) "")))))
-
 ;; TODO How to pass the optional arg to fetch-links?
 (-> renderer-fetch-links (quri:uri) list)
 (defun renderer-fetch-links (url)
@@ -568,9 +564,9 @@ Otherwise, create a new buffer to fetch the links."
       (calispel:? channel))))
 
 (-> http-fetch-links (quri:uri &optional list) list)
-(defun http-fetch-links (url &optional (filtering-rules (list #'host=
-                                                              #'distinct-url-path-p
-                                                              #'scheme=)))
+(defun http-fetch-links (url &optional (filtering-rules (list #'scheme=
+                                                              #'host=
+                                                              #'path!=)))
   "Return a list of links from URL."
   ;; TODO
   ;; quri:merge-uris bug - see https://github.com/fukamachi/quri/issues/47;

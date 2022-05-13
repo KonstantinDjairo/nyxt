@@ -257,9 +257,9 @@ Otherwise behaves the same as `cl-json:encode-json-to-string'."
 
 ;; TODO memoization
 (defun fetch-links (&optional (buffer (current-buffer))
-                      (filtering-rules (list #'host=
-                                             #'distinct-url-path-p
-                                             #'scheme=)))
+                      (filtering-rules (list #'scheme=
+                                             #'host=
+                                             #'path!=)))
   "Return a list of links from BUFFER.
 FILTERING-RULES is a list of functions that take two URLs and return a boolean.
 A link is collected when, for all elements of FILTERING-RULES, the return value
