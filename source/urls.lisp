@@ -624,7 +624,7 @@ with depth 0.  Find below the stack of calls.
   (labels ((nth-power-function (n arg fn)
              "Apply FN on ARG at most N times, as long as ARG is non-nil."
              (cond ((or (zerop n) (null arg)) arg)
-                   (t (nth-power-function (1- n) (funcall fn arg) fn))))
+                   (t (nth-power-function (decf n) (funcall fn arg) fn))))
            (url-in-list-p (url list)
              "Return non-nil when URL is a member of LIST."
              (position url list :test #'quri:uri=)))
