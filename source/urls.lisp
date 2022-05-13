@@ -557,10 +557,11 @@ return a boolean.  It defines an equivalence relation induced by EQ-FN-LIST.
   "Return a list of links from URL.
 If there is a buffer corresponding to URL, then fetch the links from it.
 Otherwise, create a new buffer to fetch the links."
-  (alex:if-let ((bufferp (find (quri:uri url) (buffer-list) :test #'quri:uri= :key #'url)))
+  (alex:if-let ((bufferp (find url (buffer-list) :test #'quri:uri= :key #'url)))
     (fetch-links bufferp)
+    ;; Use background buffers
+    ;; Buffers should be made as light as possible (no images, CSS, etc).
     (let ((channel (make-channel)))
-      ;; Buffers should be made as light as possible (no images, CSS, etc).
       (once-on (buffer-loaded-hook (make-nosave-buffer :url url)) buffer
         (calispel:! channel (fetch-links buffer)))
       (calispel:? channel))))
