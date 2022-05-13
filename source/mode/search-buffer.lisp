@@ -184,13 +184,12 @@ Example:
     (setf (keep-search-hints-p buffer) nil))"
   (prompt
    :prompt "Search text"
-   :sources (list
-             (make-instance 'search-buffer-source
-                            :case-sensitive-p case-sensitive-p
-                            :actions (list (lambda (search-match)
-                                             (unless (keep-search-hints-p (current-buffer))
-                                               (remove-search-hints))
-                                             search-match))))))
+   :sources (make-instance 'search-buffer-source
+                           :case-sensitive-p case-sensitive-p
+                           :actions (list (lambda (search-match)
+                                            (unless (keep-search-hints-p (current-buffer))
+                                              (remove-search-hints))
+                                            search-match)))))
 
 (define-command search-buffers (&key case-sensitive-p)
   "Search multiple buffers."
