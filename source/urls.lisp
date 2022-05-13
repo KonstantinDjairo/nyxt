@@ -3,8 +3,9 @@
 
 (in-package :nyxt)
 
-;; A URL is defined by the following components:
-;; scheme:[//authority]path[?query][#fragment]
+;; A URI is defined by the following components:
+;; URI = scheme ":" ["//" authority] path ["?" query] ["#" fragment]
+;; authority = [userinfo "@"] host [":" port]
 
 (export-always 'url)
 (defmethod url ((url quri:uri))
