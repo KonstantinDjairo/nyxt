@@ -395,6 +395,17 @@ instance must be non-nil.")
     (:p "A catalogue of extensions is available in the "
         (:code "document/EXTENSIONS.org") " file in the source repository.")
 
+    (:h2 "Modes")
+    (:h3 "Diff")
+    (:p "Diff mode computes and displays the differences between the contents of
+two buffers.")
+    (:p "Firstly, make sure that those two buffers are open.")
+    (:p "Then, run " (command-markup 'describe-slot) "and
+    choose " (:code "diff") ".")
+    (:p "Select the buffers with the help of prompt-buffer, while noticing that
+the order does matter.")
+    (:p "A new buffer opens and displays the differences."))
+
     (:h2 "Troubleshooting")
     (:h3 "Playing videos")
     (:p "Nyxt delegates video support to third-party plugins.")
