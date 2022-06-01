@@ -35,30 +35,30 @@ various parts, such as the path of all data files.")
         (theme *browser*)
 
       (body
-       :color theme:text
        :background-color theme:background
+       :color theme:on-background
        :margin-left "20px"
        :margin-top "20px")
       ("h1,h2,h3,h4,h5,h6"
        :color theme:primary
        :font-family theme:font-family)
       (hr
+       :background-color theme:secondary
+       :color theme:on-secondary
        :height "3px"
        :border-radius "2px"
-       :border-width "0"
-       :color theme:secondary
-       :background-color theme:secondary)
+       :border-width "0")
       (button
-       :background "none"
+       :background "none"               ; FIXME
        :color "inherit"
        :border "none"
        :padding 0
        :font "inherit"
        :outline "inherit")
       (.button
-       :display "inline-block"
        :background-color theme:secondary
-       :color theme:background
+       :color theme:on-secondary
+       :display "inline-block"
        :text-decoration "none"
        :border-radius "2px"
        :padding "6px"
@@ -69,11 +69,11 @@ various parts, such as the path of all data files.")
        :display "inline"
        :color theme:primary)
       (".link:hover"
-       :color theme:text)
+       :color theme:on-background)
       (.accent
        :background-color theme:accent)
       (|.button:hover|
-       :color theme:text)
+       :color theme:on-background)
       (|.button:visited|
        :color theme:background)
       (|.button:active|
@@ -82,20 +82,20 @@ various parts, such as the path of all data files.")
        :color theme:primary)
       (pre
        :overflow "auto"
-       :color theme:text
-       :background-color theme:quaternary
+       :color theme:on-background
+       :background-color theme:secondary
        :border-radius "2px"
        :padding "5px")
       ("table, th, td"
-       :border-color theme:quaternary
+       :border-color theme:secondary
        :border-collapse "collapse"
        :border-width "1px"
        :border-style "solid"
-       :color theme:text
-       :background-color theme:background)
+       :background-color theme:background
+       :color theme:on-background)
       (th
        :background-color theme:primary
-       :color theme:background
+       :color theme:on-primary
        :text-align "left")))
    (buffer-delete-hook                  ; TODO: Should we move this to `context-buffer'?
     (make-instance 'hook-buffer)
@@ -554,12 +554,12 @@ store them somewhere and `ffi-buffer-delete' them once done."))
    (style (theme:themed-css (theme *browser*)
             (body
              :background-color theme:background
-             :color theme:text
+             :color theme:on-background
              :margin "0"
              :padding "10px"
              :border-style "solid"
              :border-width "0px 1px"
-             :border-color theme:tertiary)
+             :border-color theme:secondary)
             ("h1,h2,h3,h4,h5,h6"
              :font-family theme:font-family
              :font-weight 500)
@@ -574,7 +574,7 @@ store them somewhere and `ffi-buffer-delete' them once done."))
              :outline "inherit")
             (.button
              :display "inline-block"
-             :background-color "darkgray"
+             :background-color "darkgray" ; FIXME
              :color theme:background
              :text-decoration "none"
              :border-radius "2px"
@@ -582,7 +582,7 @@ store them somewhere and `ffi-buffer-delete' them once done."))
              :margin-left "2px"
              :margin-right "2px")
             (|.button:hover|
-             :color theme:text)
+             :color theme:on-background)
             (|.button:visited|
              :color theme:background)
             (|.button:active|
@@ -601,13 +601,13 @@ store them somewhere and `ffi-buffer-delete' them once done."))
    (glyph-mode-presentation-p
     nil
     :documentation "Display the modes as a list of glyphs.")
+   ;; FIXME massage me.
    (style
     (theme:themed-css (theme *browser*)
       (body
-       :color theme:text
-       :background theme:tertiary
+       :background theme:secondary
+       :color theme:on-secondary
        :font-size "14px"
-       :color theme:text
        :padding 0
        :margin 0
        :line-height "20px")
@@ -645,7 +645,7 @@ store them somewhere and `ffi-buffer-delete' them once done."))
        :font-size "16px"
        :font-weight "700"
        :background-color theme:primary
-       :color theme:background
+       :color theme:on-primary
        :padding-left "5px"
        :overflow "hidden"
        :white-space "nowrap"
@@ -656,14 +656,14 @@ store them somewhere and `ffi-buffer-delete' them once done."))
        :text-align "center"
        :z-index "3")
       (".vi-normal-mode"
-       :color theme:background
-       :background-color theme:secondary)
-      (".vi-insert-mode"
-       :color theme:background
-       :background-color theme:accent)
-      ("#url"
-       :color theme:background
        :background-color theme:secondary
+       :color theme:on-secondary)
+      (".vi-insert-mode"
+       :background-color theme:accent
+       :color theme:on-accent)
+      ("#url"
+       :background-color theme:secondary
+       :color theme:on-secondary
        :min-width "100px"
        :text-overflow "ellipsis"
        :overflow-x "hidden"
@@ -672,8 +672,8 @@ store them somewhere and `ffi-buffer-delete' them once done."))
        :padding-left "15px"
        :z-index "2")
       ("#tabs"
-       :color theme:background
-       :background-color theme:tertiary
+       :background-color theme:secondary
+       :color theme:on-secondary
        :min-width "100px"
        :white-space "nowrap"
        :overflow-x "scroll"
@@ -690,10 +690,10 @@ store them somewhere and `ffi-buffer-delete' them once done."))
        :padding-left "5px"
        :padding-right "5px")
       (".tab:hover"
-       :color theme:text)
+       :color theme:on-background)
       ("#modes"
        :background-color theme:secondary
-       :color theme:background
+       :color theme:on-secondary
        :text-align "right"
        :padding-left "10px"
        :padding-right "5px"
@@ -713,7 +713,7 @@ store them somewhere and `ffi-buffer-delete' them once done."))
        :color theme:background
        :text-decoration "none")
       (|.button:hover|
-       :color theme:text))))
+       :color theme:on-background))))
   (:export-class-name-p t)
   (:export-accessor-names-p t)
   (:export-predicate-name-p t)

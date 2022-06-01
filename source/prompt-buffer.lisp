@@ -41,23 +41,23 @@ chosen suggestions inside brackets.")
                  :font-size "14px"
                  :line-height "18px")
               (body
-               :color theme:text
                :background theme:background
+               :color theme:on-background
                :overflow "hidden"
                :margin "0"
                :padding "0")
               ("#prompt-area"
                :background-color theme:secondary
+               :color theme:on-secondary
                :display "grid"
                :grid-template-columns "auto auto 1fr auto"
-               :width "100%"
-               :color theme:background)
+               :width "100%")
               ("#prompt-area-vi"
-               :background-color theme:tertiary
+               :background-color theme:secondary
+               :color theme:on-secondary
                :display "grid"
                :grid-template-columns "auto auto 1em 1fr auto"
-               :width "100%"
-               :color theme:background)
+               :width "100%")
               ("#prompt"
                :padding-left "10px"
                :line-height "26px")
@@ -72,15 +72,17 @@ chosen suggestions inside brackets.")
                :margin "2px"
                :padding "1px")
               (".vi-normal-mode"
-               :background-color theme:primary)
+               :background-color theme:primary
+               :color theme:on-primary)
               (".vi-insert-mode"
-               :background-color theme:accent)
+               :background-color theme:accent
+               :color theme:on-accent)
               ("#input"
                :border "none"
                :outline "none"
                :padding "3px"
-               :color theme:text
-               :background-color theme:quaternary
+               :background-color theme:secondary
+               :color theme:on-secondary
                :width "100%"
                :autofocus "true")
               (".source"
@@ -90,20 +92,20 @@ chosen suggestions inside brackets.")
                :margin-right "3px")
               (".source-name"
                :color theme:background
+               :background-color theme:on-background
                :padding-left "5px"
-               :line-height "24px"
-               :background-color theme:secondary)
+               :line-height "24px")
               ("#suggestions"
-               :color theme:text
                :background-color theme:background
+               :color theme:on-background
                :overflow-y "hidden"
                :overflow-x "hidden"
                :height "100%"
                :width "100%")
               (".source-content"
-               :margin-left "16px"
                :background-color theme:background
-               :color theme:text
+               :color theme:on-background
+               :margin-left "16px"
                :width "100%"
                :table-layout "fixed")
               (".source-content td"
@@ -111,21 +113,21 @@ chosen suggestions inside brackets.")
                :height "20px"
                :overflow "auto")
               (".source-content th"
+               :background-color theme:secondary
+               :color theme:on-secondary
                :font-weight "normal"
                :padding-left "3px"
-               :text-align "left"
-               :color theme:text
-               :background-color theme:quaternary)
+               :text-align "left")
               (".source-content td::-webkit-scrollbar"
                :display "none")
               ("#selection"
                :background-color theme:accent
-               :color theme:background)
-              (.marked :background-color theme:tertiary
-                       :font-weight "bold"
-                       :color theme:background)
+               :color theme:on-accent)
+              (.marked :background-color theme:secondary
+                       :color theme:on-secondary
+                       :font-weight "bold")
               (.selected :background-color theme:primary
-                         :color theme:background))
+                         :color theme:on-primary))
             :documentation "The CSS applied to a prompt-buffer when it is set-up.")
      (override-map (make-keymap "override-map")
                    :type keymap:keymap

@@ -58,8 +58,8 @@ The channel is popped when a prompt buffer is hidden.")
    (message-buffer-style
     (theme:themed-css (theme *browser*)
       (body
-       :color theme:text
        :background-color theme:background
+       :color theme:on-background
        :font-size "12px"
        :padding 0
        :padding-left "4px"

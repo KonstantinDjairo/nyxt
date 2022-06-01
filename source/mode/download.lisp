@@ -131,7 +131,7 @@ appearance in the buffer when they are setf'd."
           :margin-top "10px"
           :padding-left "5px"
           :background-color theme:background
-          :color theme:text
+          :color theme:on-background
           :brightness "80%"
           :border-radius "3px")
          (".download-url"
@@ -139,7 +139,7 @@ appearance in the buffer when they are setf'd."
           :white-space "nowrap")
          (".download-url a"
           :font-size "small"
-          :color theme:text)
+          :color theme:on-background)
          (".status p"
           :display "inline-block"
           :margin-right "10px")
@@ -151,7 +151,7 @@ appearance in the buffer when they are setf'd."
           :background-color theme:secondary)
          (".progress-bar-fill"
           :height "100%"
-          :background-color theme:tertiary))))
+          :background-color theme:secondary))))
   (:toggler-command-p nil))
 
 

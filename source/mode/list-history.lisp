@@ -12,7 +12,7 @@
    (style
     (theme:themed-css (theme *browser*)
       (a
-       :color theme:text)
+       :color theme:on-background)
       ("a:hover"
        :color theme:primary))))
   (:toggler-command-p nil))

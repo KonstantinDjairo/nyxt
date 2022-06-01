@@ -12,14 +12,14 @@
    (style
     (theme:themed-css (theme *browser*)
       (body
-       :color theme:text
        :background theme:background
+       :color theme:on-background
        :line-height "initial")
       (* :margin 0
          :padding 0
          :list-style "none")
       (".current-buffer a"
-       :color theme:text)
+       :color theme:on-background)
       (".current-buffer a:hover"
        :color theme:primary)
       (".other-buffer a"
@@ -36,7 +36,7 @@
        :content "' '"
        :position "absolute"
        :width "1px"
-       :background-color theme:text
+       :background-color theme:on-background ; is this right???
        :color theme:background
        :top "5px"
        :bottom "-12px"
@@ -50,7 +50,7 @@
        :content "' '"
        :position "absolute"
        :width "1px"
-       :background-color theme:text
+       :background-color theme:on-background ; is this right???
        :color theme:background
        :top "5px"
        :bottom "7px"
@@ -62,7 +62,7 @@
        :left "-10px"
        :width "10px"
        :height "1px"
-       :background-color theme:text
+       :background-color theme:on-background ; is this right?
        :color theme:background
        :top "12px"))))
   (:toggler-command-p nil))

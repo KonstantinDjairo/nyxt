@@ -74,13 +74,14 @@ CLASS is a class symbol."
                             text))
                (:p "Colors:")
                (:dl
-                (loop for (name color text-color) in '(("Text" theme:text-color theme:background-color)
-                                                       ("Accent" theme:accent-color theme:background-color)
-                                                       ("Primary" theme:primary-color theme:background-color)
-                                                       ("Secondary" theme:secondary-color theme:background-color)
-                                                       ("Tertiary" theme:tertiary-color theme:text-color)
-                                                       ("Quaternary" theme:quaternary-color theme:text-color)
-                                                       ("Background" theme:background-color theme:text-color))
+                (loop for (name color text-color) in '(("Background" theme:background-color theme:on-background-color)
+                                                       ("On Background" theme:on-background-color theme:background-color)
+                                                       ("Accent" theme:accent-color theme:on-accent-color)
+                                                       ("On Accent" theme:on-accent-color theme:accent-color)
+                                                       ("Primary" theme:primary-color theme:on-primary-color)
+                                                       ("On Primary" theme:on-primary-color theme:primary-color)
+                                                       ("Secondary" theme:secondary-color theme:on-secondary-color)
+                                                       ("On Secondary" theme:on-secondary-color theme:secondary-color))
                       collect (:dt name ": ")
                       collect (:dd (:span :style (format nil "background-color: ~a; color: ~a; border-radius: 0.2em"
                                                          (slot-value (symbol-value theme-symbol) color)
@@ -299,14 +300,14 @@ System information is also saved into the clipboard."
                    (:p (format nil "No bookmarks in ~s." (files:expand (nyxt/bookmark-mode:bookmarks-file mode)))))))))
     (let ((dashboard-style (theme:themed-css (theme *browser*)
                              (body
-                              :color theme:text
                               :background-color theme:background
+                              :color theme:on-background
                               :margin-top 0
                               :margin-bottom 0)
                              ("#title"
                               :font-size "400%")
                              ("#subtitle"
-                              :color theme:tertiary)
+                              :color theme:secondary)
                              (.section
                               :border-style "solid none none none"
                               :border-color theme:secondary
@@ -314,7 +315,7 @@ System information is also saved into the clipboard."
                               :overflow "scroll"
                               :min-height "150px")
                              ("h3"
-                              :color theme:tertiary)
+                              :color theme:secondary)
                              ("ul"
                               :list-style-type "circle"))))
       (spinneret:with-html-string
