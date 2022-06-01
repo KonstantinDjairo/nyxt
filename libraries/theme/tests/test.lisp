@@ -9,30 +9,29 @@
                  'theme:theme
                  :dark-p t
                  :background-color "black"
-                 :text-color "white"
+                 :on-background-color "white"
                  :accent-color "magenta"
                  :primary-color "yellow"
-                 :secondary-color "blue"
-                 :tertiary-color "green"
-                 :quaternary-color "red")
+                 :secondary-color "blue")
   "An absolutely crazy theme to test things on.")
 
+;; FIXME change the colors based on background-color and rewrite the output
 (prove:subtest "Basic CSS substitution"
   (prove:is (theme:themed-css *theme*
               (a
-               :color theme:primary
-               :background-color theme:background))
+               :background-color theme:background
+               :color theme:primary))
             "a { color: yellow; background-color: black; }
 "))
 
 (prove:subtest "Multi-rule/multi-color substitution"
   (prove:is (theme:themed-css *theme*
               (a
-               :color theme:primary
-               :background-color theme:background)
+               :background-color theme:background
+               :color theme:primary)
               (body
-               :color theme:text
-               :background-color theme:primary)
+               :background-color theme:primary
+               :color theme:on-background)
               (h1 :color theme:accent))
             "a { color: yellow; background-color: black; }
 body { color: white; background-color: yellow; }
@@ -50,10 +49,9 @@ h1 { color: magenta; }
 (prove:subtest "Inline macro/special form invokation"
   (prove:is (theme:themed-css *theme*
               (body
-               :color (if (theme:dark-p theme:theme) theme:background theme:text)
+               :color (if (theme:dark-p theme:theme) theme:background theme:on-background)
                :background-color theme:primary))
             "body { color: black; background-color: yellow; }
 "))
 
 (prove:finalize)
-
