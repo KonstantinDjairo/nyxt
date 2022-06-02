@@ -29,24 +29,24 @@ the highest standard on accessibility."))
 
 (export-always 'diff)
 (define-internal-page-command-global diff
-    (&key (old-buffer (prompt1
-                        :prompt "Old buffer"
-                        :sources (make-instance
-                                  'buffer-source
-                                  :multi-selection-p nil
-                                  :return-actions nil)))
-          (new-buffer (prompt1
-                        :prompt "New buffer"
-                        :sources (make-instance
-                                  'buffer-source
-                                  :constructor (nyxt::buffer-initial-suggestions
-                                                :current-is-last-p t)
-                                  :multi-selection-p nil
-                                  :return-actions nil))))
+    (&key (old-buffer-id (id (prompt1
+                               :prompt "Old buffer"
+                               :sources (make-instance
+                                         'buffer-source
+                                         :multi-selection-p nil
+                                         :return-actions nil))))
+          (new-buffer-id (id (prompt1
+                               :prompt "New buffer"
+                               :sources (make-instance
+                                         'buffer-source
+                                         :constructor (nyxt::buffer-initial-suggestions
+                                                       :current-is-last-p t)
+                                         :multi-selection-p nil
+                                         :return-actions nil)))))
     (diff-buffer "*diff*" 'diff-mode)
   "Show difference between two buffers"
-  (let ((old-html (ffi-buffer-get-document (nyxt::buffers-get (id old-buffer))))
-        (new-html (ffi-buffer-get-document (nyxt::buffers-get (id new-buffer)))))
+  (let ((old-html (ffi-buffer-get-document (nyxt::buffers-get old-buffer-id)))
+        (new-html (ffi-buffer-get-document (nyxt::buffers-get new-buffer-id))))
     (spinneret:with-html-string
       (:style (style (find-submode 'nyxt/diff-mode:diff-mode diff-buffer)))
       (:raw (html-diff:html-diff old-html
