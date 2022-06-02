@@ -33,7 +33,6 @@ various parts, such as the path of all data files.")
    (style
     (theme:themed-css
         (theme *browser*)
-
       (body
        :background-color theme:background
        :color theme:on-background
@@ -49,15 +48,15 @@ various parts, such as the path of all data files.")
        :border-radius "2px"
        :border-width "0")
       (button
-       :background "none"               ; FIXME
+       :background "transparent"
        :color "inherit"
        :border "none"
        :padding 0
        :font "inherit"
        :outline "inherit")
       (.button
-       :background-color theme:secondary
-       :color theme:on-secondary
+       :background-color theme:primary
+       :color theme:on-primary
        :display "inline-block"
        :text-decoration "none"
        :border-radius "2px"
@@ -71,9 +70,10 @@ various parts, such as the path of all data files.")
       (".link:hover"
        :color theme:on-background)
       (.accent
-       :background-color theme:accent)
+       :color theme:accent)
       (|.button:hover|
-       :color theme:on-background)
+       :background theme:accent
+       :color theme:on-accent)
       (|.button:visited|
        :color theme:background)
       (|.button:active|
@@ -601,16 +601,13 @@ store them somewhere and `ffi-buffer-delete' them once done."))
    (glyph-mode-presentation-p
     nil
     :documentation "Display the modes as a list of glyphs.")
-   ;; FIXME massage me.
    (style
     (theme:themed-css (theme *browser*)
       (body
-       :background theme:secondary
-       :color theme:on-secondary
+       :line-height "20px"
        :font-size "14px"
        :padding 0
-       :margin 0
-       :line-height "20px")
+       :margin 0)
       (.loader
        :border-width "2px"
        :border-style "solid"
@@ -642,10 +639,10 @@ store them somewhere and `ffi-buffer-delete' them once done."))
        :grid-template-columns "90px 30px minmax(auto, 30ch) 1fr 220px"
        :overflow-y "hidden")
       ("#controls"
-       :font-size "16px"
-       :font-weight "700"
        :background-color theme:primary
        :color theme:on-primary
+       ;; :font-size "16px"
+       :font-weight "700"
        :padding-left "5px"
        :overflow "hidden"
        :white-space "nowrap"
@@ -672,8 +669,8 @@ store them somewhere and `ffi-buffer-delete' them once done."))
        :padding-left "15px"
        :z-index "2")
       ("#tabs"
-       :background-color theme:secondary
-       :color theme:on-secondary
+       :background-color theme:primary
+       :color theme:on-primary
        :min-width "100px"
        :white-space "nowrap"
        :overflow-x "scroll"
@@ -703,17 +700,16 @@ store them somewhere and `ffi-buffer-delete' them once done."))
       ("#modes::-webkit-scrollbar"
        :display "none")
       (button
-       :background "none"
+       :background "transparent"
        :color "inherit"
-       :border "none"
+       :text-decoration "transparent"
+       :border "transparent"
        :padding 0
        :font "inherit"
        :outline "inherit")
-      (.button
-       :color theme:background
-       :text-decoration "none")
-      (|.button:hover|
-       :color theme:on-background))))
+      (|button:hover|
+       ;; FIXME it doesn't well very well!
+       :color theme:accent))))
   (:export-class-name-p t)
   (:export-accessor-names-p t)
   (:export-predicate-name-p t)
