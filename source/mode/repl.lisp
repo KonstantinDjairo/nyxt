@@ -65,31 +65,38 @@
        "d b" 'nyxt/input-edit-mode:delete-backwards-word
        "d w" 'nyxt/input-edit-mode:delete-forwards-word)))
    (style (theme:themed-css (theme *browser*)
-            (* :font-family "monospace,monospace")
-            (body :margin-right "0")
-            ("#container" :display "flex"
-                          :flex-flow "column"
-                          :height "100%")
-            (.input :background-color theme:primary
-                    :display "grid"
-                    :grid-template-columns "auto 1fr"
-                    :width "100%"
-                    :padding 0
-                    :margin 0)
-            (.input-buffer :background-color theme:secondary
-                           :width "100%"
-                           :border "none"
-                           :outline "none"
-                           :padding "3px"
-                           :autofocus "true")
+            (*
+             :font-family "monospace,monospace")
+            (body
+             :margin-right "0")
+            ("#container"
+             :display "flex"
+             :flex-flow "column"
+             :height "100%")
+            (.input
+             :background-color theme:primary
+             :display "grid"
+             :grid-template-columns "auto 1fr"
+             :width "100%"
+             :padding 0
+             :margin 0)
+            (.input-buffer
+             :background-color theme:secondary
+             :width "100%"
+             :border "none"
+             :outline "none"
+             :padding "3px"
+             :autofocus "true")
             ("#evaluations"
              :font-size "12px"
              :flex-grow "1"
              :overflow-y "auto"
              :overflow-x "auto")
-            (.prompt :padding-right "4px"
-                     :padding-left "4px"
-                     :line-height "30px"))
+            (.prompt
+             :color theme:on-primary
+             :padding-right "4px"
+             :padding-left "4px"
+             :line-height "30px"))
           :documentation "The CSS applied to a REPL when it is set-up.")
    (evaluations
     (list)

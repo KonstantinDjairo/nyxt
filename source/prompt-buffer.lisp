@@ -35,11 +35,11 @@ chosen suggestions inside brackets.")
      ;; You will want edit this to match the changes done to `style'.")
      (hide-single-source-header-p nil
                                   :documentation "Hide source header when there is only one.")
-     (style (theme:themed-css
-                (theme *browser*)
-              (* :font-family "monospace,monospace"
-                 :font-size "14px"
-                 :line-height "18px")
+     (style (theme:themed-css (theme *browser*)
+              (*
+               :font-family "monospace,monospace"
+               :font-size "14px"
+               :line-height "18px")
               (body
                :overflow "hidden"
                :margin "0"
@@ -121,12 +121,14 @@ chosen suggestions inside brackets.")
               ("#selection"
                :background-color theme:secondary
                :color theme:on-secondary)
-              (.marked :background-color theme:accent
-                       :color theme:on-accent
-                       :font-weight "bold")
+              (.marked
+               :background-color theme:accent
+               :color theme:on-accent
+               :font-weight "bold")
               ;; what does this do?
-              (.selected :background-color theme:primary
-                         :color theme:on-primary))
+              (.selected
+               :background-color theme:primary
+               :color theme:on-primary))
             :documentation "The CSS applied to a prompt-buffer when it is set-up.")
      (override-map (make-keymap "override-map")
                    :type keymap:keymap

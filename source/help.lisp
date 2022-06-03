@@ -119,14 +119,16 @@ disabling compositing, you will need to restart Nyxt."))
 (define-command print-bindings-cheatsheet ()
   "Print the buffer with the list of all known bindings for the current buffer
 optimizing the use of space."
-  (nyxt::html-set-style
-   (theme:themed-css (theme *browser*)
-     (h3 :font-size "10px"
-         :font-family theme:font-family
-         :font-weight 500)
-     (tr :font-size "7px")
-     (div :display inline-block))
-   (describe-bindings))
+  (nyxt::html-set-style (theme:themed-css (theme *browser*)
+                          (h3
+                           :font-size "10px"
+                           :font-family theme:font-family
+                           :font-weight 500)
+                          (tr
+                           :font-size "7px")
+                          (div
+                           :display inline-block))
+                        (describe-bindings))
   (nyxt/document-mode:print-buffer))
 
 (defun tls-help (buffer url)

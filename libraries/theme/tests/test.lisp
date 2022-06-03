@@ -32,7 +32,8 @@
               (body
                :background-color theme:primary
                :color theme:on-background)
-              (h1 :color theme:accent))
+              (h1
+               :color theme:accent))
             "a { color: yellow; background-color: black; }
 body { color: white; background-color: yellow; }
 h1 { color: magenta; }

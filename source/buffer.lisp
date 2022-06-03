@@ -30,73 +30,71 @@ various parts, such as the path of all data files.")
    (url-at-point (quri:uri ""))
    (title "")
 
-   (style
-    (theme:themed-css
-        (theme *browser*)
-      (body
-       :background-color theme:background
-       :color theme:on-background
-       :margin-left "20px"
-       :margin-top "20px")
-      ("h1,h2,h3,h4,h5,h6"
-       :color theme:primary
-       :font-family theme:font-family)
-      (hr
-       :background-color theme:secondary
-       :color theme:on-secondary
-       :height "3px"
-       :border-radius "2px"
-       :border-width "0")
-      (button
-       :background "transparent"
-       :color "inherit"
-       :border "none"
-       :padding 0
-       :font "inherit"
-       :outline "inherit")
-      (.button
-       :background-color theme:primary
-       :color theme:on-primary
-       :display "inline-block"
-       :text-decoration "none"
-       :border-radius "2px"
-       :padding "6px"
-       :margin "2px")
-      (.link
-       :all "unset"
-       :text-decoration "underline"
-       :display "inline"
-       :color theme:primary)
-      (".link:hover"
-       :color theme:on-background)
-      (.accent
-       :color theme:accent)
-      (|.button:hover|
-       :background theme:accent
-       :color theme:on-accent)
-      (|.button:visited|
-       :color theme:background)
-      (|.button:active|
-       :color theme:background)
-      (a
-       :color theme:primary)
-      (pre
-       :overflow "auto"
-       :color theme:on-background
-       :background-color theme:secondary
-       :border-radius "2px"
-       :padding "5px")
-      ("table, th, td"
-       :border-color theme:secondary
-       :border-collapse "collapse"
-       :border-width "1px"
-       :border-style "solid"
-       :background-color theme:background
-       :color theme:on-background)
-      (th
-       :background-color theme:primary
-       :color theme:on-primary
-       :text-align "left")))
+   (style (theme:themed-css (theme *browser*)
+            (body
+             :background-color theme:background
+             :color theme:on-background
+             :margin-left "20px"
+             :margin-top "20px")
+            ("h1,h2,h3,h4,h5,h6"
+             :color theme:primary
+             :font-family theme:font-family)
+            (hr
+             :background-color theme:secondary
+             :color theme:on-secondary
+             :height "3px"
+             :border-radius "2px"
+             :border-width "0")
+            (button
+             :background "transparent"
+             :color "inherit"
+             :border "none"
+             :padding 0
+             :font "inherit"
+             :outline "inherit")
+            (.button
+             :background-color theme:primary
+             :color theme:on-primary
+             :display "inline-block"
+             :text-decoration "none"
+             :border-radius "2px"
+             :padding "6px"
+             :margin "2px")
+            (.link
+             :all "unset"
+             :text-decoration "underline"
+             :display "inline"
+             :color theme:primary)
+            (".link:hover"
+             :color theme:on-background)
+            (.accent
+             :color theme:accent)
+            (|.button:hover|
+             :background theme:accent
+             :color theme:on-accent)
+            (|.button:visited|
+             :color theme:background)
+            (|.button:active|
+             :color theme:background)
+            (a
+             :color theme:primary)
+            (pre
+             :overflow "auto"
+             :color theme:on-background
+             :background-color theme:secondary
+             :border-radius "2px"
+             :padding "5px")
+            ("table, th, td"
+             :border-color theme:secondary
+             :border-collapse "collapse"
+             :border-width "1px"
+             :border-style "solid"
+             :background-color theme:background
+             :color theme:on-background)
+            (th
+             :background-color theme:primary
+             :color theme:on-primary
+             :text-align "left")))
    (buffer-delete-hook                  ; TODO: Should we move this to `context-buffer'?
     (make-instance 'hook-buffer)
     :type hook-buffer
@@ -601,115 +599,114 @@ store them somewhere and `ffi-buffer-delete' them once done."))
    (glyph-mode-presentation-p
     nil
     :documentation "Display the modes as a list of glyphs.")
-   (style
-    (theme:themed-css (theme *browser*)
-      (body
-       :line-height "20px"
-       :font-size "14px"
-       :padding 0
-       :margin 0)
-      (.loader
-       :border-width "2px"
-       :border-style "solid"
-       :border-color "transparent"
-       :border-top-color theme:accent
-       :border-left-color theme:accent
-       :border-radius "50%"
-       :display "inline-block"
-       :width "7px"
-       :height "7px"
-       :animation "spin 1s linear infinite")
-      ("@keyframes spin"
-       ("0%" :transform "rotate(0deg)")
-       ("100%" :transform "rotate(360deg)"))
-      (".arrow-right"
-       :clip-path "polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%)"
-       :margin-right "-10px")
-      (".arrow-left"
-       :clip-path "polygon(10px 0, 100% 0, 100% 100%, 10px 100%, 0% 50%)"
-       :margin-left "-10px")
-      ("#container"
-       :display "grid"
-       ;; Columns: controls, url, tabs, modes
-       :grid-template-columns "90px minmax(auto, 30ch) 1fr 220px"
-       :overflow-y "hidden")
-      ("#container-vi"
-       :display "grid"
-       ;; Columns: controls, vi-status, url, tabs, modes
-       :grid-template-columns "90px 30px minmax(auto, 30ch) 1fr 220px"
-       :overflow-y "hidden")
-      ("#controls"
-       :background-color theme:primary
-       :color theme:on-primary
-       ;; :font-size "16px"
-       :font-weight "700"
-       :padding-left "5px"
-       :overflow "hidden"
-       :white-space "nowrap"
-       :z-index "4")
-      ("#vi-mode"
-       :padding-right "10px"
-       :padding-left "10px"
-       :text-align "center"
-       :z-index "3")
-      (".vi-normal-mode"
-       :background-color theme:secondary
-       :color theme:on-secondary)
-      (".vi-insert-mode"
-       :background-color theme:accent
-       :color theme:on-accent)
-      ("#url"
-       :background-color theme:secondary
-       :color theme:on-secondary
-       :min-width "100px"
-       :text-overflow "ellipsis"
-       :overflow-x "hidden"
-       :white-space "nowrap"
-       :padding-right "10px"
-       :padding-left "15px"
-       :z-index "2")
-      ("#tabs"
-       :background-color theme:primary
-       :color theme:on-primary
-       :min-width "100px"
-       :white-space "nowrap"
-       :overflow-x "scroll"
-       :text-align "left"
-       :padding-left "15px"
-       :padding-right "10px"
-       :z-index "1")
-      ("#tabs::-webkit-scrollbar"
-       :display "none")
-      (.tab
-       :color theme:background
-       :white-space "nowrap"
-       :text-decoration "none"
-       :padding-left "5px"
-       :padding-right "5px")
-      (".tab:hover"
-       :color theme:on-background)
-      ("#modes"
-       :background-color theme:secondary
-       :color theme:on-secondary
-       :text-align "right"
-       :padding-left "10px"
-       :padding-right "5px"
-       :overflow-x "scroll"
-       :white-space "nowrap"
-       :z-index "2")
-      ("#modes::-webkit-scrollbar"
-       :display "none")
-      (button
-       :background "transparent"
-       :color "inherit"
-       :text-decoration "transparent"
-       :border "transparent"
-       :padding 0
-       :font "inherit"
-       :outline "inherit")
-      (|button:hover|
-       ;; FIXME it doesn't well very well!
-       :color theme:accent))))
+   (style (theme:themed-css (theme *browser*)
+            (body
+             :line-height "20px"
+             :font-size "14px"
+             :padding 0
+             :margin 0)
+            (.loader
+             :border-width "2px"
+             :border-style "solid"
+             :border-color "transparent"
+             :border-top-color theme:accent
+             :border-left-color theme:accent
+             :border-radius "50%"
+             :display "inline-block"
+             :width "7px"
+             :height "7px"
+             :animation "spin 1s linear infinite")
+            ("@keyframes spin"
+             ("0%" :transform "rotate(0deg)")
+             ("100%" :transform "rotate(360deg)"))
+            (".arrow-right"
+             :clip-path "polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%)"
+             :margin-right "-10px")
+            (".arrow-left"
+             :clip-path "polygon(10px 0, 100% 0, 100% 100%, 10px 100%, 0% 50%)"
+             :margin-left "-10px")
+            ("#container"
+             :display "grid"
+             ;; Columns: controls, url, tabs, modes
+             :grid-template-columns "90px minmax(auto, 30ch) 1fr 220px"
+             :overflow-y "hidden")
+            ("#container-vi"
+             :display "grid"
+             ;; Columns: controls, vi-status, url, tabs, modes
+             :grid-template-columns "90px 30px minmax(auto, 30ch) 1fr 220px"
+             :overflow-y "hidden")
+            ("#controls"
+             :background-color theme:primary
+             :color theme:on-primary
+             ;; :font-size "16px"
+             :font-weight "700"
+             :padding-left "5px"
+             :overflow "hidden"
+             :white-space "nowrap"
+             :z-index "4")
+            ("#vi-mode"
+             :padding-right "10px"
+             :padding-left "10px"
+             :text-align "center"
+             :z-index "3")
+            (".vi-normal-mode"
+             :background-color theme:secondary
+             :color theme:on-secondary)
+            (".vi-insert-mode"
+             :background-color theme:accent
+             :color theme:on-accent)
+            ("#url"
+             :background-color theme:secondary
+             :color theme:on-secondary
+             :min-width "100px"
+             :text-overflow "ellipsis"
+             :overflow-x "hidden"
+             :white-space "nowrap"
+             :padding-right "10px"
+             :padding-left "15px"
+             :z-index "2")
+            ("#tabs"
+             :background-color theme:primary
+             :color theme:on-primary
+             :min-width "100px"
+             :white-space "nowrap"
+             :overflow-x "scroll"
+             :text-align "left"
+             :padding-left "15px"
+             :padding-right "10px"
+             :z-index "1")
+            ("#tabs::-webkit-scrollbar"
+             :display "none")
+            (.tab
+             :color theme:background
+             :white-space "nowrap"
+             :text-decoration "none"
+             :padding-left "5px"
+             :padding-right "5px")
+            (".tab:hover"
+             :color theme:on-background)
+            ("#modes"
+             :background-color theme:secondary
+             :color theme:on-secondary
+             :text-align "right"
+             :padding-left "10px"
+             :padding-right "5px"
+             :overflow-x "scroll"
+             :white-space "nowrap"
+             :z-index "2")
+            ("#modes::-webkit-scrollbar"
+             :display "none")
+            (button
+             :background "transparent"
+             :color "inherit"
+             :text-decoration "transparent"
+             :border "transparent"
+             :padding 0
+             :font "inherit"
+             :outline "inherit")
+            (|button:hover|
+             ;; FIXME it doesn't well very well!
+             :color theme:accent))))
   (:export-class-name-p t)
   (:export-accessor-names-p t)
   (:export-predicate-name-p t)
