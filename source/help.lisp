@@ -238,9 +238,9 @@ The version number is stored in the clipboard."
            :title "Chat with developers and other Nyxt users."
            "Chat")))
      (:main
-      (:h1 "Nyxt")
+      (:h1 :class "accent" "Nyxt")
       (:i "The Internet on your terms.")
-      (:p (:button :class "button accent"
+      (:p (:button :class "button"
                    :type "submit"
                    :onclick (ps:ps (nyxt/ps:lisp-eval '(set-url :prefill-current-url-p nil)))
                    "Start searching!")))
