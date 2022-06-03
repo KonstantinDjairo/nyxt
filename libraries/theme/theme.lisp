@@ -10,7 +10,7 @@
   "A dynamic variable to bind to `background-color' of the current `theme' in `themed-css'.")
 
 (defvar on-background nil
-  "A dynamic variable to bind to `text-color' of the current `theme' in `themed-css'.")
+  "A dynamic variable to bind to `on-background-color' of the current `theme' in `themed-css'.")
 
 (defvar primary nil
   "A dynamic variable to bind to `primary-color' of the current `theme' in `themed-css'.")
@@ -22,13 +22,13 @@
   "A dynamic variable to bind to `secondary-color' of the current `theme' in `themed-css'.")
 
 (defvar on-secondary nil
-  "A dynamic variable to bind to `secondary-color' of the current `theme' in `themed-css'.")
+  "A dynamic variable to bind to `on-secondary-color' of the current `theme' in `themed-css'.")
 
 (defvar accent nil
   "A dynamic variable to bind to `accent-color' of the current `theme' in `themed-css'.")
 
 (defvar on-accent nil
-  "A dynamic variable to bind to `accent-color' of the current `theme' in `themed-css'.")
+  "A dynamic variable to bind to `on-accent-color' of the current `theme' in `themed-css'.")
 
 (defvar font-family nil
   "A dynamic variable to bind to `font-family' of the current `theme' in `themed-css'.")
@@ -44,33 +44,33 @@
    (on-background-color
     "black"
     :type string
-    :documentation "The color applied to elements appearing in front of `background'.
-Must contrast with `background'.")
+    :documentation "The color applied to elements appearing in front of
+`background-color'.  Must contrast with `background-color'.")
    (primary-color
     "#555555"
     :type string
-    :documentation "The main non-text/interface color.
-Should preferably be neutral.")
+    :documentation "One of the colors applied to surfaces.  Should preferably be
+neutral.")
    (on-primary-color
     "white"
     :type string
-    :documentation "The color applied to elements appearing in front of `primary'.
-Must contrast with `primary'.")
+    :documentation "The color applied to elements appearing in front of
+`primary-color'.  Must contrast with `primary'.")
    (secondary-color
     "#A6A6A6"
     :type string
-    :documentation "The secondary interface color.
-Should contrast with `background-color'.")
+    :documentation "One of the colors applied to surfaces.  Should preferably be
+neutral.")
    (on-secondary-color
     "black"
     :type string
-    :documentation "The color applied to elements appearing in front of `secondary'.
-Must contrast with `secondary'.")
+    :documentation "The color applied to elements appearing in front of
+`secondary-color'.  Must contrast with `secondary'.")
    (accent-color
     "#37a8e4"
     :type string
-    :documentation "The color of highlighted elements that need attention.
-Should stand out from all colors in the theme.")
+    :documentation "The color applied to distinguished elements.  Should stand
+out from all of the other theme colors.")
    (on-accent-color
     "black"
     :type string
