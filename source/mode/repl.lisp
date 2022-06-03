@@ -69,20 +69,18 @@
             (body :margin-right "0")
             ("#container" :display "flex"
                           :flex-flow "column"
-                          :height "100%"
-                          :background-color theme:background
-                          :color theme:on-background)
-            (.input :display "grid"
+                          :height "100%")
+            (.input :background-color theme:primary
+                    :display "grid"
                     :grid-template-columns "auto 1fr"
                     :width "100%"
                     :padding 0
-                    :margin 0
-                    :background-color theme:secondary)
-            (.input-buffer :width "100%"
+                    :margin 0)
+            (.input-buffer :background-color theme:secondary
+                           :width "100%"
                            :border "none"
                            :outline "none"
                            :padding "3px"
-                           :background-color theme:secondary
                            :autofocus "true")
             ("#evaluations"
              :font-size "12px"
@@ -91,9 +89,7 @@
              :overflow-x "auto")
             (.prompt :padding-right "4px"
                      :padding-left "4px"
-                     :line-height "30px"
-                     ;; is this right??
-                     :color theme:background))
+                     :line-height "30px"))
           :documentation "The CSS applied to a REPL when it is set-up.")
    (evaluations
     (list)
