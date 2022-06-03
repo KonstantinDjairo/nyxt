@@ -3,36 +3,6 @@
 
 (in-package :theme)
 
-(defvar theme nil
-  "A dynamic variable to bind to current `theme' in `themed-css'.")
-
-(defvar background nil
-  "A dynamic variable to bind to `background-color' of the current `theme' in `themed-css'.")
-
-(defvar on-background nil
-  "A dynamic variable to bind to `on-background-color' of the current `theme' in `themed-css'.")
-
-(defvar primary nil
-  "A dynamic variable to bind to `primary-color' of the current `theme' in `themed-css'.")
-
-(defvar on-primary nil
-  "A dynamic variable to bind to `on-primary-color' of the current `theme' in `themed-css'.")
-
-(defvar secondary nil
-  "A dynamic variable to bind to `secondary-color' of the current `theme' in `themed-css'.")
-
-(defvar on-secondary nil
-  "A dynamic variable to bind to `on-secondary-color' of the current `theme' in `themed-css'.")
-
-(defvar accent nil
-  "A dynamic variable to bind to `accent-color' of the current `theme' in `themed-css'.")
-
-(defvar on-accent nil
-  "A dynamic variable to bind to `on-accent-color' of the current `theme' in `themed-css'.")
-
-(defvar font-family nil
-  "A dynamic variable to bind to `font-family' of the current `theme' in `themed-css'.")
-
 (define-class theme ()
   ((dark-p
     nil
@@ -89,22 +59,56 @@ Must contrast with `accent'.")
   (make-instance 'theme))
 
 (defvar +dark-theme+
-  (make-instance
-           'theme
-           :dark-p t
-           :background-color "black"
-           :on-background-color "white"
-           :primary-color "#DB9665"
-           :on-primary-color "black"
-           ;; the relative contrast between this color and white is quite low.
-           ;; I suggest #86451B.
-           :secondary-color "#AD693E"
-           :on-secondary-color "white"
-           ;; for symmetric reasons, the accent should be chosen so that the
-           ;; on-accent would be on-background (in this case, white).  I suggest
-           ;; #735502.
-           :accent-color "#FCBA04"
-           :on-accent-color "black"))
+  (make-instance 'theme
+                 :dark-p t
+                 :background-color "black"
+                 :on-background-color "white"
+                 :primary-color "#DB9665"
+                 :on-primary-color "black"
+                 ;; the relative contrast between this color and white is quite low.
+                 ;; I suggest #86451B.
+                 :secondary-color "#AD693E"
+                 :on-secondary-color "white"
+                 ;; for symmetric reasons, the accent should be chosen so that the
+                 ;; on-accent would be on-background (in this case, white).  I suggest
+                 ;; #735502.
+                 :accent-color "#FCBA04"
+                 :on-accent-color "black"))
+
+(defvar theme nil
+  "Dynamic variable that binds `theme' in `themed-css'.")
+(defvar background nil
+  "Dynamic variable that binds `background-color' of `theme' in `themed-css'.")
+(defvar on-background nil
+  "Dynamic variable that binds `on-background-color' of `theme' in `themed-css'.")
+(defvar primary nil
+  "Dynamic variable that binds `primary-color' of `theme' in `themed-css'.")
+(defvar on-primary nil
+  "Dynamic variable that binds `on-primary-color' of `theme' in `themed-css'.")
+(defvar secondary nil
+  "Dynamic variable that binds `secondary-color' of `theme' in `themed-css'.")
+(defvar on-secondary nil
+  "Dynamic variable that binds `on-secondary-color' of `theme' in `themed-css'.")
+(defvar accent nil
+  "Dynamic variable that binds `accent-color' of `theme' in `themed-css'.")
+(defvar on-accent nil
+  "Dynamic variable that binds `on-accent-color' of `theme' in `themed-css'.")
+(defvar font-family nil
+  "Dynamic variable that binds `font-family' of `theme' in `themed-css'.")
+
+(defmacro with-theme (theme &body body)
+  "Evaluate body with the theme bindings available."
+  `(let* ((theme:theme ,theme)
+          (theme:background (background-color theme:theme))
+          (theme:on-background (on-background-color theme:theme))
+          (theme:primary (primary-color theme:theme))
+          (theme:on-primary (on-primary-color theme:theme))
+          (theme:secondary (secondary-color theme:theme))
+          (theme:on-secondary (on-secondary-color theme:theme))
+          (theme:accent (accent-color theme:theme))
+          (theme:on-accent (on-accent-color theme:theme))
+          (theme:font-family (font-family theme:theme)))
+     ,@body))
 
 (defun plist-p (object)
   "Return non-nil if OBJECT is a plist."
@@ -127,29 +131,6 @@ Must contrast with `accent'.")
                               (t elem)))
                           rule))
       (cons 'list (mapcar (lambda (x) `(quote ,x)) rule))))
-
-(defmacro with-theme (theme &body body)
-  "Evaluate body with the theme bindings available.
-FIXME
-The bindings are:
-- `theme:theme' -- THEME itself.
-- `theme:background' -- background color of the THEME.
-- `theme:on-background' -- text color of the THEME.
-- `theme:primary' -- primary color of the THEME.
-- `theme:secondary' -- secondary color of the THEME.
-- `theme:accent' -- accent color of the THEME.
-- `theme:font' -- font family of the theme."
-  `(let* ((theme:theme ,theme)
-          (theme:background (background-color theme:theme))
-          (theme:on-background (on-background-color theme:theme))
-          (theme:primary (primary-color theme:theme))
-          (theme:on-primary (on-primary-color theme:theme))
-          (theme:secondary (secondary-color theme:theme))
-          (theme:on-secondary (on-secondary-color theme:theme))
-          (theme:accent (accent-color theme:theme))
-          (theme:on-accent (on-accent-color theme:theme))
-          (theme:font-family (font-family theme:theme)))
-     ,@body))
 
 (defmacro themed-css (theme &body rules)
   "Generate a CSS styled according to the THEME.
