@@ -41,14 +41,12 @@ chosen suggestions inside brackets.")
                  :font-size "14px"
                  :line-height "18px")
               (body
-               :background theme:background
-               :color theme:on-background
                :overflow "hidden"
                :margin "0"
                :padding "0")
               ("#prompt-area"
-               :background-color theme:secondary
-               :color theme:on-secondary
+               :background-color theme:accent
+               :color theme:on-accent
                :display "grid"
                :grid-template-columns "auto auto 1fr auto"
                :width "100%")
@@ -78,11 +76,11 @@ chosen suggestions inside brackets.")
                :background-color theme:accent
                :color theme:on-accent)
               ("#input"
+               :background-color theme:background
+               :color theme:on-background
                :border "none"
                :outline "none"
                :padding "3px"
-               :background-color theme:secondary
-               :color theme:on-secondary
                :width "100%"
                :autofocus "true")
               (".source"
@@ -91,8 +89,8 @@ chosen suggestions inside brackets.")
               (".source-glyph"
                :margin-right "3px")
               (".source-name"
-               :color theme:background
-               :background-color theme:on-background
+               :background-color theme:secondary
+               :color theme:on-secondary
                :padding-left "5px"
                :line-height "24px")
               ("#suggestions"
@@ -113,19 +111,20 @@ chosen suggestions inside brackets.")
                :height "20px"
                :overflow "auto")
               (".source-content th"
-               :background-color theme:secondary
-               :color theme:on-secondary
+               :background-color theme:primary
+               :color theme:on-primary
                :font-weight "normal"
                :padding-left "3px"
                :text-align "left")
               (".source-content td::-webkit-scrollbar"
                :display "none")
               ("#selection"
-               :background-color theme:accent
-               :color theme:on-accent)
-              (.marked :background-color theme:secondary
-                       :color theme:on-secondary
+               :background-color theme:secondary
+               :color theme:on-secondary)
+              (.marked :background-color theme:accent
+                       :color theme:on-accent
                        :font-weight "bold")
+              ;; what does this do?
               (.selected :background-color theme:primary
                          :color theme:on-primary))
             :documentation "The CSS applied to a prompt-buffer when it is set-up.")
