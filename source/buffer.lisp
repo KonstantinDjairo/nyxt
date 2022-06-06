@@ -563,21 +563,20 @@ store them somewhere and `ffi-buffer-delete' them once done."))
             (a
              :color theme:primary)
             (button
-             :background "none"
+             :background "transparent"
              :color "inherit"
              :border "none"
              :padding 0
              :font "inherit"
              :outline "inherit")
             (.button
+             :background-color theme:primary
+             :color theme:on-primary
              :display "inline-block"
-             :background-color "darkgray" ; FIXME
-             :color theme:background
              :text-decoration "none"
              :border-radius "2px"
              :padding "6px"
-             :margin-left "2px"
-             :margin-right "2px")
+             :margin "2px")
             (|.button:hover|
              :opacity 0.5)
             (|.button:visited|
