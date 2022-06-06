@@ -13,5 +13,5 @@
             (a
              :color theme:on-background)
             ("a:hover"
-             :color theme:primary))))
+             :opacity 0.5))))
   (:toggler-command-p nil))

@@ -20,11 +20,11 @@
             (".current-buffer a"
              :color theme:on-background)
             (".current-buffer a:hover"
-             :color theme:primary)
+             :opacity 0.5)
             (".other-buffer a"
              :color theme:primary)
             (".other-buffer a:hover"
-             :color theme:secondary)
+             :opacity 0.5)
             (li
              :white-space "nowrap")
             ("ul li"

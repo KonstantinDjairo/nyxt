@@ -66,12 +66,11 @@ various parts, such as the path of all data files.")
              :display "inline"
              :color theme:primary)
             (".link:hover"
-             :color theme:on-background)
+             :opacity 0.5)
             (.accent
              :color theme:accent)
             (|.button:hover|
-             :background theme:accent
-             :color theme:on-accent)
+             :opacity 0.5)
             (|.button:visited|
              :color theme:background)
             (|.button:active|
@@ -580,7 +579,7 @@ store them somewhere and `ffi-buffer-delete' them once done."))
              :margin-left "2px"
              :margin-right "2px")
             (|.button:hover|
-             :color theme:on-background)
+             :opacity 0.5)
             (|.button:visited|
              :color theme:background)
             (|.button:active|
@@ -684,7 +683,7 @@ store them somewhere and `ffi-buffer-delete' them once done."))
              :padding-left "5px"
              :padding-right "5px")
             (".tab:hover"
-             :color theme:on-background)
+             :opacity 0.5)
             ("#modes"
              :background-color theme:secondary
              :color theme:on-secondary
@@ -705,8 +704,7 @@ store them somewhere and `ffi-buffer-delete' them once done."))
              :font "inherit"
              :outline "inherit")
             (|button:hover|
-             ;; FIXME it doesn't well very well!
-             :color theme:accent))))
+             :opacity 0.5))))
   (:export-class-name-p t)
   (:export-accessor-names-p t)
   (:export-predicate-name-p t)
