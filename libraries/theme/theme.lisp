@@ -3,6 +3,10 @@
 
 (in-package :theme)
 
+;; TODO It would be possible to set all of the "on-" colors based on their
+;; counterparts by computing the contrast ratio.
+;; See https://www.w3.org/TR/WCAG20-TECHS/G18.html.
+
 (define-class theme ()
   ((dark-p
     nil
@@ -30,7 +34,8 @@ neutral.")
     "#A6A6A6"
     :type string
     :documentation "One of the colors applied to surfaces.  Should preferably be
-neutral.")
+neutral.  Must be chosen such that `on-secondary-color' and `on-primary-color'
+are not the same.")
    (on-secondary-color
     "black"
     :type string
