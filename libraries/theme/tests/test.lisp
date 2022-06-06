@@ -22,7 +22,7 @@
               (a
                :background-color theme:background
                :color theme:primary))
-            "a { color: yellow; background-color: black; }
+            "a { background-color: black; color: yellow; }
 "))
 
 (prove:subtest "Multi-rule/multi-color substitution"
@@ -35,17 +35,17 @@
                :color theme:on-background)
               (h1
                :color theme:accent))
-            "a { color: yellow; background-color: black; }
-body { color: white; background-color: yellow; }
+            "a { background-color: black; color: yellow; }
+body { background-color: yellow; color: white; }
 h1 { color: magenta; }
 "))
 
 (prove:subtest "Inline function execution"
   (prove:is  (theme:themed-css *theme*
                (body
-                :color (concatenate 'string theme:accent " !important")
-                :background-color theme:primary))
-             "body { color: magenta !important; background-color: yellow; }
+                :background-color theme:primary
+                :color (concatenate 'string theme:accent " !important")))
+             "body { background-color: yellow; color: magenta !important; }
 "))
 
 (prove:subtest "Inline macro/special form invokation"
