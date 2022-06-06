@@ -48,7 +48,7 @@ h1 { color: magenta; }
              "body { background-color: yellow; color: magenta !important; }
 "))
 
-(prove:subtest "Inline macro/special form invokation"
+(prove:subtest "Inline macro/special form invocation"
   (prove:is (theme:themed-css *theme*
               (body
                :color (if (theme:dark-p theme:theme) theme:background theme:on-background)
