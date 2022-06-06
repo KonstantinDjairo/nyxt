@@ -5,17 +5,18 @@
 
 (prove:plan nil)
 
-(defvar *theme* (make-instance
-                 'theme:theme
-                 :dark-p t
-                 :background-color "black"
-                 :on-background-color "white"
-                 :accent-color "magenta"
-                 :primary-color "yellow"
-                 :secondary-color "blue")
-  "An absolutely crazy theme to test things on.")
+(defvar *theme* (make-instance 'theme:theme
+                               :dark-p t
+                               :background-color "black"
+                               :on-background-color "white"
+                               :primary-color "yellow"
+                               :on-primary-color "black"
+                               :secondary-color "blue"
+                               :on-secondary-color "black"
+                               :accent-color "magenta"
+                               :on-accent-color "black")
+  "Dummy theme for testing.")
 
-;; FIXME change the colors based on background-color and rewrite the output
 (prove:subtest "Basic CSS substitution"
   (prove:is (theme:themed-css *theme*
               (a
