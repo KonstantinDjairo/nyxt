@@ -73,7 +73,7 @@ Must contrast with `accent'.")
                  :secondary-color "#86451B"
                  :on-secondary-color "white"
                  :accent-color "#735502"
-                 :on-accent-color "black"))
+                 :on-accent-color "white"))
 
 (defvar theme nil
   "Dynamic variable that binds `theme' in `themed-css'.")
