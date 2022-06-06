@@ -70,14 +70,9 @@ Must contrast with `accent'.")
                  :on-background-color "white"
                  :primary-color "#DB9665"
                  :on-primary-color "black"
-                 ;; the relative contrast between this color and white is quite low.
-                 ;; I suggest #86451B.
-                 :secondary-color "#AD693E"
+                 :secondary-color "#86451B"
                  :on-secondary-color "white"
-                 ;; for symmetric reasons, the accent should be chosen so that the
-                 ;; on-accent would be on-background (in this case, white).  I suggest
-                 ;; #735502.
-                 :accent-color "#FCBA04"
+                 :accent-color "#735502"
                  :on-accent-color "black"))
 
 (defvar theme nil
