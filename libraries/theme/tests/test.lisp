@@ -51,7 +51,9 @@ h1 { color: magenta; }
 (prove:subtest "Inline macro/special form invocation"
   (prove:is (theme:themed-css *theme*
               (body
-               :color (if (theme:dark-p theme:theme) theme:background theme:on-background)
+               :color (if (theme:dark-p theme:theme)
+                          theme:background
+                          theme:on-background)
                :background-color theme:primary))
             "body { color: black; background-color: yellow; }
 "))
